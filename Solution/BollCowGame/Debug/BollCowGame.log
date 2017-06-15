@@ -1,3 +1,4 @@
-﻿  FBullCowGame.cpp
+﻿  main.cpp
+f:\visualstudio\solution\bollcowgame\main.cpp(105): warning C4715: 'GetGuess': nem todos os caminhos de controle retornam um valor
   BollCowGame.vcxproj -> F:\VisualStudio\Solution\Debug\BollCowGame.exe
   BollCowGame.vcxproj -> F:\VisualStudio\Solution\Debug\BollCowGame.pdb (Partial PDB)

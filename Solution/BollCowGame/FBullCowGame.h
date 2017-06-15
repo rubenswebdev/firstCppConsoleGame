@@ -1,12 +1,17 @@
 #pragma once
 #include <string>
+#include <map>
+#include <sstream>
+
+#define TMap std::map
 
 using FString = std::string;
 using int32 = int;
 
-enum class EWordStatus {
+enum class EGuessStatus {
 	OK,
-	NOT_OK,
+	NOT_ISO,
+	NOT_LOWER,
 	WRONG_LENGTH
 };
 
@@ -24,21 +29,26 @@ public:
 	FBullCowGame();
 
 	//gets que nao modificam valores devem ser const, funciona sem porem é uma recomendação.
-	int32 GetMaxTries() const;
+	int32 GetMaxTries();
 	int32 GetCurrentTry() const;
-	int32 GetHiddenWordLength() const;
+	int32 GetHiddenWordLength();
+	int32 GetDificuldade() const;
 	bool IsGameWon() const;
+	FString GetHiddenWord();
 
 	void Reset();
 
-	//TODO uma funcao para validar o que o player digitou
-	//TODO uma funcao para incrementar o numero de tentativas caso tenha errado
-	//TODO uma funcao para verificar as cows and bulls
-	EWordStatus CheckGuessValidity(FString Guess);
-	FBullCowCount SubmitGuess(FString Guess);
+	EGuessStatus CheckGuessValidity(FString);
+	FBullCowCount SubmitGuess(FString);
+	void SetDificuldade(int32);
 
 private:
 	int32 MyCurrentTry;
-	int32 MyMaxTries;
 	FString MyHiddenWord;
+	bool bGameWon;
+	int32 Dificuldade;
+	TMap<int32, FString> OpcoesPalavras;
+
+	bool IsIsogram(FString Guess) const;
+	bool IsLowercase(FString Word) const;
 };
